@@ -1,4 +1,4 @@
-# Báo cáo Cá nhân — Trần Trung Hiếu - 2A20260038
+# Báo cáo Cá nhân — Trần Trung Hiếu - 2A202600318
 **Lab Day 14: AI Evaluation Factory**
 **Nhiệm vụ:** Retrieval Evaluation & Dataset (SDG)
 
