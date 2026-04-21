@@ -41,13 +41,13 @@ Kết quả benchmark hiện tại (theo `reports/summary.json`):
 | Judge models | gpt-4o-mini + gpt-4o |
 | Agreement Rate (V2) | **100.0%** |
 | Conflict auto-resolved cases (V2) | 0 |
-| Avg Judge Score V1 | **3.733** |
-| Avg Judge Score V2 | **3.367** |
-| Delta (V2 - V1) | **-0.366** |
-| Regression Gate | **BLOCK** |
-| Lý do block | `avg_score < 3.5` và `delta < -0.2` |
+| Avg Judge Score V1 | **4.217** |
+| Avg Judge Score V2 | **4.325** |
+| Delta (V2 - V1) | **+0.108** |
+| Regression Gate | **APPROVE** |
+| Lý do gate | Không có (`gate_reasons: []`) |
 
-Ý nghĩa: hệ thống đã chạy đầy đủ V1 vs V2 và kích hoạt cơ chế gate tự động đúng thiết kế. V2 chưa đạt ngưỡng nên bị chặn release, tránh đưa bản giảm chất lượng vào production.
+Ý nghĩa: hệ thống đã chạy đầy đủ V1 vs V2 và kích hoạt cơ chế gate tự động đúng thiết kế. V2 đạt toàn bộ ngưỡng chất lượng và có cải thiện so với V1 nên được approve release.
 
 ---
 
@@ -79,7 +79,7 @@ Regression Gate là tầng kiểm soát chất lượng trước release:
 - Kiểm tra ngưỡng thay đổi so với bản cũ (`delta_score`).
 - Chỉ khi đạt toàn bộ điều kiện mới `APPROVE`, ngược lại `BLOCK`.
 
-Trong bài này, V2 bị `BLOCK` vì giảm điểm trung bình vượt ngưỡng cho phép, dù các metric khác vẫn đạt.
+Trong bài này, V2 được `APPROVE` vì đạt ngưỡng điểm tối thiểu, giữ chất lượng ổn định và có cải thiện điểm trung bình so với V1.
 
 ### 3.4 Position Bias trong LLM-as-a-Judge
 Position bias là hiện tượng Judge thiên vị thứ tự trình bày đáp án. Hàm `check_position_bias(...)` kiểm tra bằng cách chấm cặp (A,B) và (B,A), từ đó phát hiện khả năng thiên vị để tăng độ tin cậy đánh giá.
